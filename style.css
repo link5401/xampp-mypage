@@ -1,0 +1,150 @@
+:root {
+    --section-orange: #ffb768;
+    --section-blue: #cae4f2;
+    --main-text: #2e190e;
+    --secondary-text: #9100ff;
+}
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    background-color: var(--section-blue) !important;
+    font-family: monospace !important;
+}
+
+section:nth-of-type(4n+1) {
+    background-color: var(--section-blue);
+}
+
+section:nth-of-type(4n+2) {
+    background-color: var(--section-orange);
+
+}
+
+section:nth-of-type(4n+3) {
+    background-color: var(--section-blue);
+
+}
+
+section:nth-of-type(4n+4) {
+    background-color: var(--section-orange)
+}
+
+.nav-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 10vh;
+
+    overflow: hidden;
+}
+
+.nav-bar li {
+    margin: 0;
+    padding: 0;
+    float: left;
+    line-height: 5;
+    /* border:  solid blue; */
+}
+
+.nav-bar li a:hover,
+a:active {
+    background-color: var(--secondary-text);
+    color: var(--section-orange);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav-bar li a {
+    padding: 0;
+    margin: 0;
+    color: var(--main-text);
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    font-size: 25px;
+
+    align-items: center;
+}
+
+
+
+/* #preview-tab {
+    height: 70%;
+} */
+
+#product {
+    /* border: solid blue; */
+    width: 100%;
+    text-align: center;
+}
+
+.product-info {
+    /* line-height: 2rem; */
+    font-size: 4rem;
+    /* border: solid blue; */
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: var(--main-text);
+    display: inline-block;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+.text-desc {
+    color: var(--main-text);
+    font-size: 2rem;
+}
+
+
+.my-footer .social {
+    text-align: center;
+    padding-bottom: 25px;
+}
+.my-footer {
+    color:var(--main-text);
+    padding:40px 0;
+}
+.my-footer .icon {
+    font-size: 3rem;
+    color: var(--main-text);
+
+}
+.my-footer a {
+    text-decoration: none !important;
+    padding-left: 10%;
+}
+.my-footer ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none !important;
+    
+}
+.my-footer ul li {
+    text-decoration:none;
+    padding:0 10px;
+    text-align: center;
+}
+.my-footer ul a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 2rem;
+}
+.my-footer a:hover {
+    color: var(--secondary-text);
+}
+.my-footer .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color: var(--main-text);
+    margin-bottom:0;
+  }
+
+  
