@@ -15,23 +15,9 @@
 <body>
     <section>
 
-        <?php
-        require __DIR__ . '\DB.php';
-        $conn = connectDB();
-        createDB($conn);
-        createProductsTable($conn);
-        createUserTable($conn);
-        // insertUsr($conn, "linh", "123456");
-        // insertUsr($conn, "linh2", "1233456");
-
-        // insertProduct($conn,"2B pencil","10$");
-        // insertProduct($conn,"4B pencil","10$");
-        ?>
         <h1>product</h1>
         <?php
         getProducts($conn);
-        getUsr($conn);
-
         ?>
         <section>
 

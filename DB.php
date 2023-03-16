@@ -46,8 +46,10 @@ function createProductsTable($conn)
 function createUserTable($conn)
 {
     $sql = "CREATE TABLE IF NOT EXISTS users (
+        userID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username varchar(255),
-        password varchar(255)
+        password varchar(255),
+        usrlevel INT(6)
     )";
     if ($conn->query($sql) == True) {
         // echo "Successfully created usr table\n";
@@ -68,11 +70,11 @@ VALUES ('$name', '$price')";
     }
 }
 
-function insertUsr($conn, $username, $password)
+function insertUsr($conn, $username, $password, $level)
 {
     $password = md5($password);
-    $sql = "INSERT INTO users (username, password)
-VALUES ('$username', '$password')";
+    $sql = "INSERT INTO users (username, password, usrlevel)
+VALUES ('$username', '$password', '$level')";
     if ($conn->query($sql) == True) {
         // echo "New record created successfully";
     } else {
@@ -80,15 +82,15 @@ VALUES ('$username', '$password')";
     }
 }
 
-function getUsr($conn)
+function getUsrlevel($conn, $username)
 {
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-            echo "<br>" . "usrname: " . $row["username"] . " password:" . $row["password"] ;
+            return $row['usrlevel'];
         }
     } else {
         echo "0 results";

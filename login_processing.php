@@ -1,4 +1,5 @@
 <?php
+session_start();
 require __DIR__ . '\DB.php';
 $conn = connectDB();
 $username = $_POST['username'];
@@ -13,9 +14,8 @@ if ($result->num_rows > 0) {
             setcookie("login_info", $value = "", time() + 86400, "/");
             $_SESSION['user'] = $username;
             echo "<br> Login sucessfully";
-            ob_start();
-            session_start();
-            echo '<script type="text/javascript"> window.open("home.php","_self");</script>';            //  On Successful Login redirects to home.php
+
+         
 
         } else {
             echo "<br> Incorrect username or password";
@@ -23,4 +23,11 @@ if ($result->num_rows > 0) {
     }
 } else {
     echo "<br> Incorrect username or password";
+}
+if(isset($_SESSION['user'])) {
+    header('Location: index.php');
+    exit;
+} else {
+    header('Location: index.php?page=login');
+    exit;
 }

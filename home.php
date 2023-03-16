@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +41,7 @@
                 </div>
                 <div class="col-3 px-0" id="product">
                     <span class="product-info">Info4: Lorem ipsum.</span>
-    ;            </div>
+                </div>
 
             </div>
         </div>
