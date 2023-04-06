@@ -4,6 +4,7 @@
     --main-text: #2e190e;
     --secondary-text: #9100ff;
 }
+
 body {
     padding: 0;
     margin: 0;
@@ -107,44 +108,51 @@ a:active {
     text-align: center;
     padding-bottom: 25px;
 }
+
 .my-footer {
-    color:var(--main-text);
-    padding:40px 0;
+    color: var(--main-text);
+    padding: 40px 0;
 }
+
 .my-footer .icon {
     font-size: 3rem;
     color: var(--main-text);
 
 }
+
 .my-footer a {
     text-decoration: none !important;
     padding-left: 10%;
 }
-.my-footer ul{
+
+.my-footer ul {
     padding: 0;
     margin: 0;
     list-style-type: none !important;
-    
+
 }
+
 .my-footer ul li {
-    text-decoration:none;
-    padding:0 10px;
+    text-decoration: none;
+    padding: 0 10px;
     text-align: center;
 }
+
 .my-footer ul a {
     color: inherit;
     text-decoration: none;
     font-size: 2rem;
 }
+
 .my-footer a:hover {
     color: var(--secondary-text);
 }
-.my-footer .copyright {
-    margin-top:15px;
-    text-align:center;
-    font-size:13px;
-    color: var(--main-text);
-    margin-bottom:0;
-  }
 
-  
+.my-footer .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--main-text);
+    margin-bottom: 0;
+}
+

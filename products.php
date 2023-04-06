@@ -13,14 +13,15 @@
 </head>
 
 <body>
-    <section>
 
+
+    <section>
         <h1>product</h1>
         <br>
         <br>
         <span id="textfile"></span>
         <pre id="xml"></pre>
-    <!-- <div id="product-container"></div> -->
+        <!-- <div id="product-container"></div> -->
     </section>
 
 </body>
@@ -49,24 +50,24 @@
             // var products = xmlDoc.getElementsByTagName("products")[0];
             // var productNodes = products.getElementsByTagName("product");
             // for (var i = 0; i < productNodes.length; i++) {
-            //     var product = productNodes[i];
-                
+            //     var product = productNo  des[i];
+
             //     var productID = document.createElement("p");
             //     productID.innerHTML = product.getAttribute("productID");
-                
+
             //     var productName = document.createElement("p");
             //     productID.innerHTML = product.getElementsByTagName("productName")[0].childNodes[0].nodeValue;
-                
+
             //     var price = document.createElement("p");
             //     price.innerHTML = product.getElementsByTagName("price")[0].childNodes[0].nodeValue;
-                
+
             //     var productContainer = document.getElementById("product-container");
             //     productContainer.appendChild(productID);
             //     productContainer.appendChild(productName);
             //     productContainer.appendChild(price);
-            }
         }
-    
+    }
+
     xhr2.open("GET", "get_product.php");
     xhr2.send();
 </script>

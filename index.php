@@ -34,6 +34,11 @@ createUserTable($conn);
 
     <body>
 
+        <form>
+            <label for="search-box">Search:</label>
+            <input type="text" id="search-box">
+        </form>
+        <div id="search-results" style="display: block;"></div>
         <section>
             <ul class="nav-bar row px-0 g-0">
                 <li class="col-3 px-0"><a href="?page=home">Home</a></li>
@@ -41,7 +46,7 @@ createUserTable($conn);
                 <li class="col-3 px-0"><a href="?page=register">Register</a></li>
                 <li class="col-3 px-0"><a href="?page=login">Login</a></li>
             </ul>
-            </form>
+
         </section>
 
         <?php
@@ -87,6 +92,11 @@ createUserTable($conn);
                     </a></li>
             </ul>
             </form>
+            <form id="search-main">
+                <label for="search-box">Search:</label>
+                <input type="text" id="search-box">
+            </form>
+            <div id="search-results" style="display: none;"></div>
         </section>
 
         <?php
@@ -121,3 +131,48 @@ createUserTable($conn);
 
 
 </html>
+ 
+<script>
+    var searchBox = document.getElementById("search-box");
+    var searchResults = document.getElementById("search-results");
+    searchBox.addEventListener("input", handleSearchBoxInput);
+
+    function updateSearchResults(products) {
+        searchResults.innerHTML = "";
+        for (var i = 0; i < products.length; i++) {
+            var product = products[i];
+            var searchResultItem = document.createElement("a");
+            searchResultItem.innerHTML = product.productName + "<br>";
+            searchResultItem.setAttribute("href", "product_detail.php?id=" + product.productID);
+            searchResults.appendChild(searchResultItem);
+        }
+        // Show the search results dropdown
+        searchResults.style.display = "block";
+    }
+
+
+
+    function handleSearchBoxInput() {
+        var query = searchBox.value.trim();
+
+        // If the query is empty, hide the search results dropdown and return
+        if (query === "") {
+            searchResults.style.display = "none";
+            return;
+        }
+
+        xhr1 = new XMLHttpRequest();
+        xhr1.onreadystatechange = function() {
+            if (xhr1.readyState == 4 && xhr1.status == 200) {
+                // Parse the response as JSON
+                console.log(xhr1.responseText);
+
+                var products = JSON.parse(xhr1.responseText);
+                // Update the search results dropdown
+                updateSearchResults(products);
+            }
+        }
+        xhr1.open("GET", "search.php?q=" + encodeURIComponent(query));
+        xhr1.send();
+    }
+</script>

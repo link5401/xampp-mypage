@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./login.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -10,11 +12,10 @@
 
 <body>
     <section>
-        <h1>login</h1>
         <form action="" id="loginForm" method="POST">
-            Username: <input id="username" type="text" name="username" placeholder="Username" autofocus required>
+            Username: <input class="login" id="username" type="text" name="username" placeholder="Username" autofocus required>
             <br>
-            Password: <input id="password" type="password" name="password" placeholder="password" required>
+            Password: <input class="login" id="password" type="password" name="password" placeholder="password" required>
             <br>
 
             <button type="submit"> Login</button>
