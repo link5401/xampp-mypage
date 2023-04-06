@@ -16,11 +16,57 @@
     <section>
 
         <h1>product</h1>
-        <?php
-        getProducts($conn);
-        ?>
-        <section>
+        <br>
+        <br>
+        <span id="textfile"></span>
+        <pre id="xml"></pre>
+    <!-- <div id="product-container"></div> -->
+    </section>
 
 </body>
 
 </html>
+
+<script>
+    var textfile = document.getElementById("textfile");
+    var xhr1 = new XMLHttpRequest();
+    xhr1.onreadystatechange = function() {
+        if (xhr1.readyState == 4 && xhr1.status == 200) {
+            textfile.innerHTML = xhr1.responseText;
+        }
+    };
+    xhr1.open("GET", "text.txt");
+
+    xhr1.send();
+
+    var xml = document.getElementById("xml");
+    var xhr2 = new XMLHttpRequest();
+    xhr2.onreadystatechange = function() {
+        if (xhr2.readyState == 4 && xhr2.status == 200) {
+            var xmlDoc = this.responseText;
+            console.log(xmlDoc);
+            xml.innerHTML = xmlDoc;
+            // var products = xmlDoc.getElementsByTagName("products")[0];
+            // var productNodes = products.getElementsByTagName("product");
+            // for (var i = 0; i < productNodes.length; i++) {
+            //     var product = productNodes[i];
+                
+            //     var productID = document.createElement("p");
+            //     productID.innerHTML = product.getAttribute("productID");
+                
+            //     var productName = document.createElement("p");
+            //     productID.innerHTML = product.getElementsByTagName("productName")[0].childNodes[0].nodeValue;
+                
+            //     var price = document.createElement("p");
+            //     price.innerHTML = product.getElementsByTagName("price")[0].childNodes[0].nodeValue;
+                
+            //     var productContainer = document.getElementById("product-container");
+            //     productContainer.appendChild(productID);
+            //     productContainer.appendChild(productName);
+            //     productContainer.appendChild(price);
+            }
+        }
+    
+    xhr2.open("GET", "get_product.php");
+    xhr2.send();
+</script>
