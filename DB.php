@@ -101,22 +101,15 @@ function getUsrlevel($conn, $username)
 
 function getProducts($conn)
 {
-    header('Content-type: text/xml');
     $sql = "SELECT * FROM products";
     $result = $conn->query($sql);
 
-    $xml_output = "<?xml version=\"1.0\"?>\n";
-    $xml_output .= "<products>\n";
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-            $xml_output .= "\t<product>\n";
-
-            // echo "<br>" . "id: " . $row["productID"] . " - Name: " . $row["productName"] . " " . $row["price"];
+            return $row;
         }
-        $xml_output .= "</products>";
 
-        echo $xml_output;
     } else {
         echo "0 results";
     }

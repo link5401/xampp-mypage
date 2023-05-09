@@ -27,6 +27,8 @@ createUserTable($conn);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 </head>
 
 
@@ -41,10 +43,12 @@ createUserTable($conn);
         <div id="search-results" style="display: block;"></div>
         <section>
             <ul class="nav-bar row px-0 g-0">
-                <li class="col-3 px-0"><a href="?page=home">Home</a></li>
-                <li class="col-3 px-0"><a href="?page=products">Products</a></li>
-                <li class="col-3 px-0"><a href="?page=register">Register</a></li>
-                <li class="col-3 px-0"><a href="?page=login">Login</a></li>
+                <li class="col px-0"><a href="?page=home">Home</a></li>
+                <li class="col px-0"><a href="?page=products">Products</a></li>
+                <li class="col px-0"><a href="?page=register">Register</a></li>
+                <li class="col px-0"><a href="?page=login">Login</a></li>
+                <li class="col px-0"><a href="?page=google-map">Google Map</a></li>
+
             </ul>
 
         </section>
@@ -68,6 +72,10 @@ createUserTable($conn);
                 include "home.php";
 
                 break;
+            case "google-map":
+                include "google-map.php";
+
+                break;
             default:
                 include "home.php";
                 break;
@@ -82,11 +90,12 @@ createUserTable($conn);
         <?php $level = getUsrlevel($conn, $_SESSION['user']);  ?>
         <section>
             <ul class="nav-bar row px-0 g-0">
-                <li class="col-3 px-0"><a href="?page=home">Home</a></li>
-                <li class="col-3 px-0"><a href="?page=products">Products</a></li>
+                <li class="col px-0"><a href="?page=home">Home</a></li>
+                <li class="col px-0"><a href="?page=products">Products</a></li>
+                <li class="col px-0"><a href="?page=google-map">Google map</a></li>
 
-                <li class="col-3 px-0"><a href="?page=logout">Logout</a></li>
-                <li class="col-3 px-0" style="line-height:1"><a href="" style="pointer-events: none;">
+                <li class="col px-0"><a href="?page=logout">Logout</a></li>
+                <li class="col px-0" style="line-height:1"><a href="" style="pointer-events: none;">
                         <?php echo 'Username: ' . $_SESSION['user']; ?>
                         <?php echo '<br>Userlevel:' . $level; ?>
                     </a></li>
@@ -115,7 +124,10 @@ createUserTable($conn);
             case "products":
                 include "products.php";
                 break;
+            case "google-map":
+                include "google-map.php";
 
+                break;
             case "home":
                 include "home.php";
 
@@ -131,7 +143,7 @@ createUserTable($conn);
 
 
 </html>
- 
+
 <script>
     var searchBox = document.getElementById("search-box");
     var searchResults = document.getElementById("search-results");

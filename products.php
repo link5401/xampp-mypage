@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -19,55 +20,111 @@
         <h1>product</h1>
         <br>
         <br>
-        <span id="textfile"></span>
-        <pre id="xml"></pre>
+        <!-- <span id="textfile"></span> -->
+        <!-- <pre id="xml"></pre> -->
         <!-- <div id="product-container"></div> -->
-    </section>
+        <div class="row products">
+            <?php
+            $conn = connectDB();
+            $sql1 = "SELECT * FROM products";
+            $page = isset($_GET['product_page']) ? $_GET['product_page'] : 1; // get the current page number
+            $result1 = $conn->query($sql1);
+            $row1 = $result1->fetch_assoc();
 
+            #get total records
+            $total_records = $result1->num_rows;
+
+            $records_per_page = 4;
+
+            $offset = ($page - 1) * $records_per_page; // calculate the offset
+
+
+            $total_pages = ceil($total_records / $records_per_page);
+            $sql = "SELECT * FROM products LIMIT $offset,$records_per_page";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class ="product-price">' . $row['productName'] . ': ' . $row['price'] . '</div>';
+                }
+            } else {
+                echo "0 results";
+            }
+            echo "</div>";
+            if ($total_pages > 1) {
+                echo '<ul class="pagination pagination-lg justify-content-center">';
+                $active = '';
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    if ($i == $page) {
+                        $active = 'active';
+                    } else {
+                        $active = '';
+                    }
+                    echo '<li class="page-item ' . $active . '"><a class="page-link" href="?page=products&product_page=' . $i . '">' . $i . '</a></li>';
+                }
+                echo '</ul>';
+            }
+
+            ?>
+
+
+    </section>
+    <section>
+        <div class="container">
+            <div class="list-group" id="lazy-load-list">
+
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>
 
-<script>
-    var textfile = document.getElementById("textfile");
-    var xhr1 = new XMLHttpRequest();
-    xhr1.onreadystatechange = function() {
-        if (xhr1.readyState == 4 && xhr1.status == 200) {
-            textfile.innerHTML = xhr1.responseText;
-        }
-    };
-    xhr1.open("GET", "text.txt");
-
-    xhr1.send();
-
-    var xml = document.getElementById("xml");
-    var xhr2 = new XMLHttpRequest();
-    xhr2.onreadystatechange = function() {
-        if (xhr2.readyState == 4 && xhr2.status == 200) {
-            var xmlDoc = this.responseText;
-            console.log(xmlDoc);
-            xml.innerHTML = xmlDoc;
-            // var products = xmlDoc.getElementsByTagName("products")[0];
-            // var productNodes = products.getElementsByTagName("product");
-            // for (var i = 0; i < productNodes.length; i++) {
-            //     var product = productNo  des[i];
-
-            //     var productID = document.createElement("p");
-            //     productID.innerHTML = product.getAttribute("productID");
-
-            //     var productName = document.createElement("p");
-            //     productID.innerHTML = product.getElementsByTagName("productName")[0].childNodes[0].nodeValue;
-
-            //     var price = document.createElement("p");
-            //     price.innerHTML = product.getElementsByTagName("price")[0].childNodes[0].nodeValue;
-
-            //     var productContainer = document.getElementById("product-container");
-            //     productContainer.appendChild(productID);
-            //     productContainer.appendChild(productName);
-            //     productContainer.appendChild(price);
-        }
+<style>
+    .product-price {
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        display: inline-block;
     }
+</style>
+<script>
+    //pagination
 
-    xhr2.open("GET", "get_product.php");
-    xhr2.send();
+    //lazyloading
+    var current_page = 1; // set the current page to 1
+    var loading = false; // flag to prevent multiple requests
+    load_data(current_page);
+
+    $(window).on('scroll', function() {
+        // Calculate the bottom of the page
+        var bottom_of_page = $(document).height() - $(window).height(); // adjust the offset to your liking
+
+        if ($(window).scrollTop() >= bottom_of_page && !loading) {
+            current_page++;
+            load_data(current_page);
+        }
+    });
+
+    function load_data(page) {
+        loading = true;
+        $.ajax({
+            type: "GET",
+            url: "./get_product.php",
+            data: {
+                product_page: page
+            },
+            success: function(response) {
+                $('#lazy-load-list').append(response);
+                // If there are no more records to load, hide the loading message
+                if (response.trim() == '') {
+                    $('.loading').hide();
+                }
+
+                loading = false; // set the loading flag to false
+            }
+        })
+    };
 </script>
