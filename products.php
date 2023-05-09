@@ -24,6 +24,7 @@
         <!-- <pre id="xml"></pre> -->
         <!-- <div id="product-container"></div> -->
         <div class="row products">
+            <h1>Pagination</h1>
             <?php
             $conn = connectDB();
             $sql1 = "SELECT * FROM products";
@@ -71,9 +72,11 @@
 
     </section>
     <section>
-        <div class="container">
-            <div class="list-group" id="lazy-load-list">
+    <h1>Lazy loading</h1>
 
+        <div class="container">
+
+            <div class="list-group" id="lazy-load-list">
             </div>
         </div>
     </section>
@@ -88,6 +91,11 @@
         margin: 0;
         text-align: center;
         display: inline-block;
+    }
+    .page-link {
+        padding: 0;
+        width: 50px;
+        text-align: center;
     }
 </style>
 <script>

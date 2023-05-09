@@ -62,32 +62,7 @@
 
     </section>
 
-    <section>
-        <footer class="my-footer">
-
-            <div class="social">
-                <a href="#">
-                    <i class="icon ion-social-instagram"></i>
-                </a>
-                <a href="#">
-                    <i class="icon ion-social-snapchat"></i>
-                </a>
-                <a href="#">
-                    <i class="icon ion-social-twitter"></i>
-                </a>
-                <a href="#">
-                    <i class="icon ion-social-facebook"></i>
-                </a>
-            </div>
-
-            <ul class="row px-0 g-0">
-                <li class="col-4 px-0"><a href="">Home</a></li>
-                <li class="col-4 px-0"><a href="">Service</a></li>
-                <li class="col-4 px-0"><a href="">Terms</a></li>
-            </ul>
-            <p class="copyright">Linh de Art © 2023</p>
-        </footer>
-    </section>
+   
 </body>
 
 </html>
